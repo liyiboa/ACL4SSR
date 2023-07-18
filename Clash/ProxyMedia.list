@@ -458,3 +458,12 @@ USER-AGENT,*com.google.ios.youtubemusic*
 USER-AGENT,YouTubeMusic*
 USER-AGENT,com.google.ios.youtubemusic*
 DOMAIN,music.youtube.com
+
+
+# github
+DOMAIN-SUFFIX,raw.githubusercontent.com
+DOMAIN-SUFFIX,githubusercontent.com
+
+# yellow
+DOMAIN-SUFFIX,jable.tv
+DOMAIN-SUFFIX,www.xvideos.com
