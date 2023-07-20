@@ -245,6 +245,7 @@ DOMAIN-SUFFIX,github.io
 DOMAIN-SUFFIX,githubapp.com
 DOMAIN-SUFFIX,githubassets.com
 DOMAIN-SUFFIX,githubusercontent.com
+DOMAIN-SUFFIX,raw.githubusercontent.com
 
 # Google
 DOMAIN-SUFFIX,1e100.net
@@ -475,6 +476,3 @@ DOMAIN-SUFFIX,ocnttv.com
 # VikACG
 DOMAIN-SUFFIX,vikacg.com
 DOMAIN-SUFFIX,picjs.xyz
-
-# github
-DOMAIN-SUFFIX,raw.githubusercontent.com
