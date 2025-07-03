@@ -1,16 +1,17 @@
 #!/bin/bash
 
-# ====== 配置运行目录 ======
-WORKDIR="\$HOME/playfast-renew"
+# ====== 配置路径（真实路径展开）======
+WORKDIR="$HOME/playfast-renew"
 SCRIPT_NAME="renew.sh"
-COOKIE_FILE="\$WORKDIR/.playfast_cookie"
-LOG_FILE="\$WORKDIR/renew.log"
-CRON_CMD="bash \$WORKDIR/\$SCRIPT_NAME >> \$LOG_FILE 2>&1"
+SCRIPT_PATH="$WORKDIR/$SCRIPT_NAME"
+LOG_FILE="$WORKDIR/renew.log"
+COOKIE_FILE="$WORKDIR/.playfast_cookie"
 
-mkdir -p "\$WORKDIR"
+# ====== 创建目录并准备环境 ======
+mkdir -p "$WORKDIR"
 
-# ====== 写入主脚本 ======
-cat > "\$WORKDIR/\$SCRIPT_NAME" <<'EOF'
+# ====== 写入续期脚本 ======
+cat > "$SCRIPT_PATH" <<EOF
 #!/bin/bash
 
 EMAIL="3107981740@qq.com"
@@ -110,14 +111,16 @@ get_reqid
 renew_and_push
 EOF
 
-chmod +x "\$WORKDIR/\$SCRIPT_NAME"
+# 设置执行权限
+chmod +x "$SCRIPT_PATH"
 
-# ====== 添加定时任务（每天 6 点） ======
-( crontab -l 2>/dev/null | grep -v "\$SCRIPT_NAME" ; echo "0 6 * * * bash \$WORKDIR/\$SCRIPT_NAME >> \$LOG_FILE 2>&1" ) | crontab -
+# ====== 设置 crontab（每天 6 点运行）======
+# 清除已有相关行，添加新行
+( crontab -l 2>/dev/null | grep -v "$SCRIPT_PATH" ; echo "0 6 * * * bash $SCRIPT_PATH >> $LOG_FILE 2>&1" ) | crontab -
 
-# ====== 输出结果 ======
-echo "✅ 脚本已部署到: \$WORKDIR/\$SCRIPT_NAME"
-echo "✅ 日志将输出到: \$LOG_FILE"
-echo "✅ 已添加定时任务: 每天 6 点自动续费"
-
-crontab -l | grep "\$SCRIPT_NAME"
+# ====== 输出信息 ======
+echo "✅ 脚本已部署到：$SCRIPT_PATH"
+echo "✅ 日志将输出到：$LOG_FILE"
+echo "✅ 已添加定时任务：每天 6 点自动续费"
+echo "📅 当前定时任务："
+crontab -l | grep "$SCRIPT_PATH"
