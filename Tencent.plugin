@@ -1,0 +1,16 @@
+#!name=腾讯视频
+
+#!desc=腾讯视频去广告
+
+#!homepage=
+
+#!author=乔合
+
+#!icon=https://raw.githubusercontent.com/liyiboa/ACL4SSR/refs/heads/master/%E5%9B%BE%E5%83%8F.png
+
+[Rule]
+URL-REGEX,^https:\/\/ossgw\.alicdn\.com\/creatives-assets/prod/feupload/user,REJECT
+IP-CIDR,47.110.187.87/32,REJECT,no-resolve
+
+[MITM]
+hostname = ossgw.alicdn.com
